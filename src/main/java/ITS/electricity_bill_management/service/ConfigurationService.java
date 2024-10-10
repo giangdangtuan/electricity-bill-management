@@ -24,12 +24,12 @@ public class ConfigurationService {
     public Configuration createConfiguration(ConfigurationCreationRequest request) {
 
         if(configurationRepository.existsByStartkWh(request.getStartkWh())) {
-            throw new AppException(ErrorCode.CONFIGURATION_STARTKWH_EXITSTED);
+            throw new AppException(ErrorCode.CONFIGURATION_STARTKWH_EXISTED);
         }
         else if(configurationRepository.existsByEndkWh(request.getEndkWh())) {
-            throw new AppException(ErrorCode.CONFIGURATION_ENDKWH_EXITSTED);
+            throw new AppException(ErrorCode.CONFIGURATION_ENDKWH_EXISTED);
         }else if(request.getStartkWh() > request.getEndkWh()) {
-            throw new AppException(ErrorCode.CONFIGURATION_STARTKWH_EXITSTED);
+            throw new AppException(ErrorCode.CONFIGURATION_STARTKWH_EXISTED);
         }
 
         Configuration configuration = new Configuration();
@@ -45,7 +45,7 @@ public class ConfigurationService {
                 .orElseThrow(() -> new RuntimeException("Configuration not found !"));
 
         if(request.getStartkWh() > request.getEndkWh()) {
-            throw new AppException(ErrorCode.CONFIGURATION_STARTKWH_EXITSTED);
+            throw new AppException(ErrorCode.CONFIGURATION_STARTKWH_EXISTED);
         }
 
         config.setStartkWh(request.getStartkWh());

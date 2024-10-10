@@ -1,25 +1,38 @@
 package ITS.electricity_bill_management.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+
 public enum ErrorCode {
-    UNCATEGORIED_EXCEPTION(9999, "Uncategoried Exception"),
-    CONFIGURATION_STARTKWH_EXITSTED(1001, "StartKWH already exited !"),
-    CONFIGURATION_ENDKWH_EXITSTED(1001, "EndKWH already exited !"),
-    CONFIGURATION_VALIDRANGE_ERROR(1002, "EndKWH must be greater than StartKWH !"),
-    CONFIGURATION_STARTKWH_INVALID(1002, "StartKWH must be greater than 0 !"),
-    USAGEHISTORY_COMSUMPTION_INVALID(1003, "Comsumption must be greater than 0 !"),
-    USERNAME_EXITSED(1004, "Username exited !"),
-    USERNAME_VALID(1005, "Username must be least at 3 characters !"),
-    PASSWORD_VALID(1006, "Password must be least at 8 characters !"),
+    UNCATEGORIZED_EXCEPTION(9999, "Uncategorized Exception", HttpStatus.INTERNAL_SERVER_ERROR),
+    CONFIGURATION_STARTKWH_EXISTED(1001, "StartKWH already existed!", HttpStatus.BAD_REQUEST),
+    CONFIGURATION_ENDKWH_EXISTED(1002, "EndKWH already existed!", HttpStatus.BAD_REQUEST),
+    CONFIGURATION_VALIDRANGE_ERROR(1003, "EndKWH must be greater than StartKWH!", HttpStatus.BAD_REQUEST),
+    CONFIGURATION_STARTKWH_INVALID(1004, "StartKWH must be greater than 0!", HttpStatus.BAD_REQUEST),
+    USAGEHISTORY_CONSUMPTION_INVALID(1005, "Consumption must be greater than 0!", HttpStatus.BAD_REQUEST),
+    USERNAME_EXISTED(1006, "Username already existed!", HttpStatus.CONFLICT),
+    USERNAME_VALID(1007, "Username must be at least 3 characters!", HttpStatus.BAD_REQUEST),
+    PASSWORD_VALID(1008, "Password must be at least 8 characters!", HttpStatus.BAD_REQUEST),
+    USER_NOT_EXISTED(1009, "User does not exist!", HttpStatus.NOT_FOUND),
+    UNAUTHENTICATED(1010, "Unauthenticated!", HttpStatus.UNAUTHORIZED),
+    UNAUTHORIZED(1011, "You do not have permission!", HttpStatus.FORBIDDEN),
+
     ;
 
 
 
     private int code;
     private String message;
+    private HttpStatusCode statusCode;
 
-    ErrorCode(int code, String message) {
+    ErrorCode(int code, String message, HttpStatusCode statusCode) {
         this.code = code;
         this.message = message;
+        this.statusCode = statusCode;
+    }
+
+    public HttpStatusCode getStatusCode() {
+        return statusCode;
     }
 
     public int getCode() {

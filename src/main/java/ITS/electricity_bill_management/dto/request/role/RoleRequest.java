@@ -1,4 +1,4 @@
-package ITS.electricity_bill_management.dto.response;
+package ITS.electricity_bill_management.dto.request.role;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,8 +12,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserResponse {
-    Long id;
-    String username;
-    Set<RoleResponse> roles;
+public class RoleRequest {
+    String name;
+    String description;
+    Set<String> permissions;
 }

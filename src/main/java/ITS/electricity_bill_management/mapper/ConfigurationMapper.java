@@ -5,6 +5,7 @@ import ITS.electricity_bill_management.dto.request.configuration.ConfigurationUp
 import ITS.electricity_bill_management.dto.response.ConfigurationResponse;
 import ITS.electricity_bill_management.model.Configuration;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
@@ -17,6 +18,11 @@ public interface ConfigurationMapper {
 
     //Sau khi lấy dữ liệu từ cơ sở dữ liệu (entity Configuration), phương thức này chuyển đổi thành
     //DTO ConfigurationResponse để gửi lại phản hồi cho client.
+
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "startkWh", target = "startkWh")
+    @Mapping(source = "endkWh", target = "endkWh")
+    @Mapping(source = "price", target = "price")
     ConfigurationResponse toConfigurationResponse(Configuration configuration);
 
     //Phương thức này cập nhật dữ liệu từ đối tượng ConfigurationUpdateRequest vào một thực thể Configuration đã tồn tại
