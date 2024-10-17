@@ -28,7 +28,12 @@ public class MonthlyReportService {
 
         List<User> users = userRepository.findAll();
         for (User user : users) {
-            sendBillReportAsync(user);
+            // Kiểm tra nếu người dùng không có vai trò ADMIN
+            if (user.getRoles().stream().noneMatch(role -> role.getName().equals("ADMIN"))) {
+                sendBillReportAsync(user);
+            } else {
+                logger.info("Người dùng " + user.getUsername() + " là ADMIN, không gửi báo cáo.");
+            }
         }
 
         logger.info("Hoàn thành gửi báo cáo hóa đơn hàng tháng.");

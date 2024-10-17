@@ -3,6 +3,7 @@ package ITS.electricity_bill_management.controller;
 import ITS.electricity_bill_management.dto.request.ApiResponse;
 import ITS.electricity_bill_management.dto.request.user.AuthenticationRequest;
 import ITS.electricity_bill_management.dto.request.user.IntrospectRequest;
+import ITS.electricity_bill_management.dto.request.user.LogoutRequest;
 import ITS.electricity_bill_management.dto.response.AuthenticationResponse;
 import ITS.electricity_bill_management.dto.response.IntrospectResponse;
 import ITS.electricity_bill_management.service.AuthenticationService;
@@ -45,6 +46,17 @@ public class AuthenticationController {
         var result = authenticationService.introspect(request);
 
         apiResponse.setResult(result);
+
+        return apiResponse;
+
+    }
+
+    @PostMapping("/logout")
+    ApiResponse<Void> logout(@RequestBody LogoutRequest request)
+            throws ParseException, JOSEException {
+        ApiResponse<Void> apiResponse = new ApiResponse<>();
+
+        authenticationService.logout(request);
 
         return apiResponse;
 
