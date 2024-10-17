@@ -14,6 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserUpdateRequest {
+    @Size(min = 3, message = "EMAIL_VALID")
+    String email;
     @Size(min = 8, message = "USERNAME_VALID")
     String username;
     @Size(min = 8, message = "PASSWORD_VALID")

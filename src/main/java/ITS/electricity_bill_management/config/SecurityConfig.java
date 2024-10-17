@@ -1,4 +1,4 @@
-package ITS.electricity_bill_management.security;
+package ITS.electricity_bill_management.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

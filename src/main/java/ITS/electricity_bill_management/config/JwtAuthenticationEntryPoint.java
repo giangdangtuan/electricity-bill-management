@@ -1,4 +1,4 @@
-package ITS.electricity_bill_management.security;
+package ITS.electricity_bill_management.config;
 
 import ITS.electricity_bill_management.dto.request.ApiResponse;
 import ITS.electricity_bill_management.exception.ErrorCode;

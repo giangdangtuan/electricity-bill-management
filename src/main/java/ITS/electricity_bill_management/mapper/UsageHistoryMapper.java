@@ -1,6 +1,5 @@
 package ITS.electricity_bill_management.mapper;
 
-
 import ITS.electricity_bill_management.dto.request.usagehistory.UsageHistoryCreationRequest;
 import ITS.electricity_bill_management.dto.request.usagehistory.UsageHistoryUpdateRequest;
 import ITS.electricity_bill_management.dto.response.UsageHistoryResponse;
@@ -11,6 +10,7 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface UsageHistoryMapper {
+
     UsageHistory toUsageHistory(UsageHistoryCreationRequest request);
 
     @Mapping(source = "id", target = "id")
@@ -18,6 +18,6 @@ public interface UsageHistoryMapper {
     @Mapping(source = "consumption", target = "consumption")
     @Mapping(source = "totalAmount", target = "totalAmount")
     UsageHistoryResponse toUsageHistoryResponse(UsageHistory usageHistory);
-    void updateUsageHistory(@MappingTarget UsageHistory usageHistory, UsageHistoryUpdateRequest request);
 
+    void updateUsageHistory(@MappingTarget UsageHistory usageHistory, UsageHistoryUpdateRequest request);
 }

@@ -1,5 +1,6 @@
 package ITS.electricity_bill_management.dto.request.usagehistory;
 
+import ITS.electricity_bill_management.model.User;
 import jakarta.validation.constraints.Min;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -17,4 +18,7 @@ public class UsageHistoryCreationRequest {
     LocalDate date;
     @Min(value = 0, message = "USAGEHISTORY_COMSUMPTION_INVALID")
     int consumption;
+
+    @Min(value = 1, message = "USER_ID_INVALID")
+    Long userId;  // Thêm trường userId để xác định người dùng
 }

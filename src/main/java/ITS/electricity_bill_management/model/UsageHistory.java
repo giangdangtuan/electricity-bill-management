@@ -1,9 +1,6 @@
 package ITS.electricity_bill_management.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,4 +21,8 @@ public class UsageHistory {
     LocalDate date;
     int consumption;
     double totalAmount;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

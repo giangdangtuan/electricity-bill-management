@@ -1,4 +1,4 @@
-package ITS.electricity_bill_management.security;
+package ITS.electricity_bill_management.config;
 
 import ITS.electricity_bill_management.enums.Role;
 import ITS.electricity_bill_management.model.User;

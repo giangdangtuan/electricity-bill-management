@@ -11,10 +11,17 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface PermissionMapper {
+
+    // Chuyển từ PermissionRequest sang Permission
     Permission toPermission(PermissionRequest request);
 
+    // Chuyển từ Permission sang PermissionResponse
     @Mapping(source = "name", target = "name")
     @Mapping(source = "description", target = "description")
     PermissionResponse toPermissionResponse(Permission permission);
-    void toUpdateUser(@MappingTarget User user, UserUpdateRequest request);
+
+    // Cập nhật đối tượng User từ UserUpdateRequest
+    //void toUpdateUser(@MappingTarget User user, UserUpdateRequest request);
+
+    // Có thể thêm các phương thức chuyển đổi liên quan đến vai trò hoặc quyền nếu cần
 }

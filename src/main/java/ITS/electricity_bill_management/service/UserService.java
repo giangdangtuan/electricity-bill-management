@@ -3,7 +3,7 @@ package ITS.electricity_bill_management.service;
 import ITS.electricity_bill_management.dto.request.user.UserCreationRequest;
 import ITS.electricity_bill_management.dto.request.user.UserUpdateRequest;
 import ITS.electricity_bill_management.dto.response.UserResponse;
-import ITS.electricity_bill_management.enums.Role;
+import ITS.electricity_bill_management.model.Role;
 import ITS.electricity_bill_management.exception.AppException;
 import ITS.electricity_bill_management.exception.ErrorCode;
 import ITS.electricity_bill_management.mapper.UserMapper;
@@ -41,15 +41,17 @@ public class UserService {
         }
 
         User user = userMapper.toUser(request);
-
-//        User user = new User();
-//        user.setUsername(request.getUsername());
-//        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 
-        HashSet<String> roles = new HashSet<>();
-        roles.add(Role.USER.name());
-        //user.setRoles(roles);
+        Role userRole = roleRepository.findByName("USER")
+                .orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_FOUND));
+
+        // Thiết lập vai trò cho user
+        HashSet<Role> roles = new HashSet<>();
+        roles.add(userRole);
+        user.setRoles(roles);
+
+        // Lưu user vào cơ sở dữ liệu
         user = userRepository.save(user);
 
         return userMapper.toUserResponse(user);

@@ -26,14 +26,15 @@ public class UsageHistoryService {
     private ConfigurationRepository configurationRepository;
 
     public UsageHistory createUsageHistory(UsageHistoryCreationRequest request) {
-
         double totalAmount = calculateAmount(request.getConsumption());
 
+        // Tạo mới UsageHistory
         UsageHistory usageHistory = new UsageHistory();
         usageHistory.setDate(request.getDate());
         usageHistory.setConsumption(request.getConsumption());
         usageHistory.setTotalAmount(totalAmount);
 
+        // Lưu lại thông tin UsageHistory
         return usageHistoryRepository.save(usageHistory);
     }
 
